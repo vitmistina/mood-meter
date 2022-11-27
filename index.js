@@ -37,6 +37,7 @@ neutral.innerText = "😐";
 neutral.style.fontSize = "2em";
 
 const negative = document.createElement("button");
+negative.setAttribute("id", "negative");
 negative.innerText = "☹️";
 negative.style.fontSize = "2em";
 
@@ -64,6 +65,7 @@ neutralInput.style.gridColumn = "span 3";
 
 const neutralConfirmButton = document.createElement("button");
 neutralConfirmButton.setAttribute("id", "neutralConfirmButton");
+neutralConfirmButton.innerText = "Send comment";
 neutralConfirmButton.style.display = "none";
 neutralConfirmButton.style.gridColumn = "span 3";
 
@@ -90,11 +92,14 @@ neutralConfirmButton.addEventListener("click", handleNeutralConfirm);
 
 function handlePositive() {
   clearModal();
+  disableButtons();
   console.log("sending positive feedback", {
     ...getData(),
     feedback: "positive",
   });
-  document.querySelector("#positiveSuccessMessage").style.display = "block";
+  document.querySelector(
+    "#feedbackModal #positiveSuccessMessage"
+  ).style.display = "block";
   window.setTimeout(
     () => (document.querySelector("#feedbackModal").style.display = "none"),
     5000
@@ -103,13 +108,17 @@ function handlePositive() {
 
 function handleNeutral() {
   clearModal();
+  disableButtons();
   console.log("sending neutral feedback", {
     ...getData(),
     feedback: "neutral",
   });
-  document.querySelector("#neutralPrompt").style.display = "block";
-  document.querySelector("#neutralInput").style.display = "block";
-  document.querySelector("#neutralConfirmButton").style.display = "block";
+  document.querySelector("#feedbackModal #neutralPrompt").style.display =
+    "block";
+  document.querySelector("#feedbackModal #neutralInput").style.display =
+    "block";
+  document.querySelector("#feedbackModal #neutralConfirmButton").style.display =
+    "block";
 }
 
 function handleNeutralConfirm() {
@@ -117,9 +126,11 @@ function handleNeutralConfirm() {
   console.log("sending neutral feedback", {
     ...getData(),
     feedback: "neutral-comment",
-    comment: "",
+    comment: document.querySelector("#feedbackModal #neutralInput").value,
   });
-  document.querySelector("#positiveSuccessMessage").style.display = "block";
+  document.querySelector(
+    "#feedbackModal #positiveSuccessMessage"
+  ).style.display = "block";
   window.setTimeout(
     () => (document.querySelector("#feedbackModal").style.display = "none"),
     5000
@@ -130,20 +141,19 @@ function handleNeutralConfirm() {
 
 function clearModal() {
   [
-    document.querySelector("#positiveSuccessMessage"),
-    document.querySelector("#neutralPrompt"),
-    document.querySelector("#neutralInput"),
-    document.querySelector("#neutralConfirmButton"),
+    document.querySelector("#feedbackModal #positiveSuccessMessage"),
+    document.querySelector("#feedbackModal #neutralPrompt"),
+    document.querySelector("#feedbackModal #neutralInput"),
+    document.querySelector("#feedbackModal #neutralConfirmButton"),
   ].forEach((node) => (node.style.display = "none"));
 }
 
 function disableButtons() {
   [
-    document.querySelector("#positiveSuccessMessage"),
-    document.querySelector("#neutralPrompt"),
-    document.querySelector("#neutralInput"),
-    document.querySelector("#neutralConfirmButton"),
-  ].forEach((node) => (node.style.display = "none"));
+    document.querySelector("#feedbackModal #positive"),
+    document.querySelector("#feedbackModal #neutral"),
+    document.querySelector("#feedbackModal #negative"),
+  ].forEach((node) => node.setAttribute("disabled", true));
 }
 
 function getData() {
