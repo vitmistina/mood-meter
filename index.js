@@ -3,15 +3,16 @@
 const feedbackModal = document.createElement("div");
 feedbackModal.setAttribute("id", "feedbackModal");
 
-feedbackModal.style.height = "200px";
 feedbackModal.style.width = "300px";
 feedbackModal.style.border = "1px solid goldenrod";
+feedbackModal.style.borderRadius = "4px";
 feedbackModal.style.display = "grid";
 feedbackModal.style.gridTemplateColumns = "repeat(3, 1fr)";
 feedbackModal.style.position = "absolute";
 feedbackModal.style.zIndex = "999999999999999";
 feedbackModal.style.bottom = "20px";
 feedbackModal.style.right = "20px";
+feedbackModal.style.padding = "16px";
 
 // HEADER
 
@@ -85,6 +86,11 @@ feedbackModal.appendChild(neutralConfirmButton);
 document.body.append(feedbackModal);
 
 // EVENT HANDLERS
+
+closeButton.addEventListener(
+  "click",
+  () => (document.querySelector("#feedbackModal").style.display = "none")
+);
 
 positive.addEventListener("click", handlePositive);
 neutral.addEventListener("click", handleNeutral);
