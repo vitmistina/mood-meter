@@ -6,7 +6,7 @@ feedbackModal.setAttribute("id", "feedbackModal");
 feedbackModal.style.width = "300px";
 feedbackModal.style.border = "1px solid goldenrod";
 feedbackModal.style.borderRadius = "4px";
-feedbackModal.style.display = "grid";
+feedbackModal.style.display = "none";
 feedbackModal.style.gridTemplateColumns = "repeat(3, 1fr)";
 feedbackModal.style.position = "absolute";
 feedbackModal.style.zIndex = "999999999999999";
@@ -71,6 +71,25 @@ neutralConfirmButton.style.display = "none";
 neutralConfirmButton.style.gridColumn = "span 3";
 
 // NEGATIVE
+
+const negativePrompt = document.createElement("p");
+negativePrompt.setAttribute("id", "negativePrompt");
+negativePrompt.innerText = "We're sorry, what went wrong?";
+negativePrompt.style.display = "none";
+negativePrompt.style.gridColumn = "span 3";
+
+const negativeInput = document.createElement("textarea");
+negativeInput.setAttribute("id", "negativeInput");
+negativeInput.style.display = "none";
+negativeInput.style.gridColumn = "span 3";
+
+const negativeConfirmButton = document.createElement("button");
+negativeConfirmButton.setAttribute("id", "negativeConfirmButton");
+negativeConfirmButton.innerText = "Send comment";
+negativeConfirmButton.style.display = "none";
+negativeConfirmButton.style.gridColumn = "span 3";
+
+const mailLink = document.createElement("a");
 
 // APPEND TO DOM
 
@@ -170,3 +189,29 @@ function getData() {
     query: window.location.search,
   };
 }
+
+function displayRandomly() {
+  console.log("sending display of feedback modal", {
+    ...getData(),
+    name: "displayed-feedback",
+  });
+  feedbackModal.style.display = "grid";
+}
+
+// RUN
+displayRandomly();
+
+let currentHref = document.location.href;
+const bodyList = document.querySelector("body");
+
+const observer = new MutationObserver(function (mutations) {
+  mutations.forEach(function (mutation) {
+    if (currentHref != document.location.href) {
+      currentHref = document.location.href;
+
+      displayRandomly();
+    }
+  });
+});
+
+observer.observe(bodyList, { childList: true, subtree: true });
