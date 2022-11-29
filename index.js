@@ -209,6 +209,8 @@ const observer = new MutationObserver(function (mutations) {
     if (currentHref != document.location.href) {
       currentHref = document.location.href;
 
+      document.querySelector("#feedbackModal").style.display = "none";
+
       displayRandomly();
     }
   });
