@@ -1,0 +1,10 @@
+{
+  "staticFiles": "http://localhost:8080/",
+  "localization": {
+    "heading": "Jak jste spokojeni s touto stránkou?",
+    "introText": "Neustále se snažíme vylepšovat naše služby tak, abyste byli maximálně spokojení. Velmi nám pomůže vaše zpětná vazba.",
+    "positiveButton": "V pořádku",
+    "neutralButton": "Neutrální",
+    "negativeButton": "Není to dobré"
+  }
+}

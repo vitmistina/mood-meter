@@ -1,0 +1,35 @@
+.mood-meter-modal-eda95ce5-2ff6-4ee5-a076-e2094c8c7b55 {
+    width: 463px;
+    border-radius: 4px;
+    box-shadow: 0px 4px 12px rgba(65, 65, 65, 0.15);
+    grid-template-columns: 1fr;
+    row-gap: 16px;
+    position: absolute;
+    z-index: 999999999999999;
+    bottom: 20px;
+    right: 20px;
+    padding: 24px;
+}
+.mood-meter-modal-eda95ce5-2ff6-4ee5-a076-e2094c8c7b55 .button-container {
+    display: grid;
+    grid-template-columns: 1fr repeat(2, 1px 1fr);
+    background-color: #F8F8F8;
+    padding:8px;
+}
+
+
+.mood-meter-modal-eda95ce5-2ff6-4ee5-a076-e2094c8c7b55 .vote-button {
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+
+.mood-meter-modal-eda95ce5-2ff6-4ee5-a076-e2094c8c7b55 .vote-button p {
+    margin:0;
+    margin-top: 10px;
+    font-family: "dagny-text";
+    color:#666666;
+}
